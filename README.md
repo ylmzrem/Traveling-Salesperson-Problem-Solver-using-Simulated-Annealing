@@ -1,59 +1,87 @@
-# Traveling Salesperson Problem (TSP) Solver using Simulated Annealing 🌍
+<div align="center">
 
-🇬🇧 **[English](#english)** | 🇹🇷 **[Türkçe](#türkçe)**
+# 🌍 Traveling Salesperson Problem (TSP) Solver
+
+### Gezgin Satıcı Problemi Çözümleyici
+
+![Language](https://img.shields.io/badge/Language-Python-blue)
+![Algorithm](https://img.shields.io/badge/Algorithm-Simulated_Annealing-brightgreen)
+
+*A dynamic, time-based exponential cooling Simulated Annealing optimizer for the Traveling Salesperson Problem.*<br>
+*Zaman bazlı üstel soğutma kullanan, dinamik Benzetimli Tavlama tabanlı Gezgin Satıcı Problemi çözümleyicisi.*
+
+[English](#english) | [Türkçe](#türkçe)
+
+</div>
 
 ---
 
-## English
+## <a id="english"></a> 🇬🇧 English
 
-This repository contains a Python-based solver for the **Traveling Salesperson Problem (TSP)** utilizing the **Simulated Annealing (SA)** algorithm. The project is designed to calculate the shortest possible route connecting a given set of 2D coordinates within a strict time limit.
+This repository contains a Python-based solver for the **Traveling Salesperson Problem (TSP)** utilizing the **Simulated Annealing (SA)** algorithm. Unlike standard SA implementations, this solver uses a **Time-Based Exponential Cooling** schedule perfectly synced with a user-defined time limit.
 
-### Core Mechanics
-Unlike standard SA implementations that rely on fixed iteration-based cooling, this solver uses a **Time-Based Exponential Cooling** schedule. The temperature smoothly decays from the initial exploration phase down to the final exploitation phase, perfectly synced with the user-defined time limit. Neighborhood generation is handled via fast delta-cost **2-Opt** inversions to efficiently uncross route segments.
-
-### Features
-*   **Dynamic Cooling:** Temperature automatically adjusts based on elapsed execution time, preventing early stagnation (freezing).
-*   **Robust Data Handling:** Automatically parses and cleans `.csv` or `.txt` coordinate files, ignoring headers or corrupted text rows.
-*   **Optimized Performance:** Fast Euclidean distance matrix calculations and delta-evaluations using `numpy` and `pandas`.
-
-### Installation
-Ensure you have the required Python libraries installed:
+### 🚀 Requirements & Installation
+Ensure you have Python installed on your system. Then, install the required libraries:
 ```bash
 pip install numpy pandas
 ```
 
-### Usage
-1. Place your city coordinates in a file named `coordinates.csv` in the root directory. The file should contain `ID`, `X`, and `Y` values (separated by commas, spaces, or tabs).
-2. Run the optimization script:
+### 📁 Data Format
+Place your city coordinates in a file named `coordinates.csv` in the root directory. The file should contain `ID`, `X`, and `Y` values (separated by commas, spaces, or tabs). The program automatically ignores headers and corrupted text rows.
+```text
+ID  X       Y
+1   510.27  319.67
+2   125.47  178.93
+3   8279.73 195.27
+```
+
+### ⚙️ Settings
+You can easily modify the algorithm parameters at the top of the `path.py` file:
+```python
+FILE_NAME = 'coordinates.csv'
+TIME_LIMIT = 100            # Execution time in seconds
+INITIAL_TEMPERATURE = 50.0  # Starting temperature for exploration
+FINAL_TEMPERATURE = 0.01    # Temperature at the final second
+```
+
+### ▶️ Usage
+Run the optimization script using the following command. The script will output live temperature drops and the final shortest route sequence to the terminal.
 ```bash
 python path.py
 ```
-3. The script will output live temperature drops, intermediate best costs, and the final shortest route sequence to the terminal.
 
 ---
 
-## Türkçe
+## <a id="türkçe"></a> 🇹🇷 Türkçe
 
-Bu depo, **Gezgin Satıcı Problemi (TSP)** için **Benzetimli Tavlama (Simulated Annealing - SA)** algoritmasını kullanan Python tabanlı bir çözümleyici içerir. Proje, verilen 2 boyutlu koordinat setini birbirine bağlayan en kısa rotayı, belirlenen kesin süre sınırı içinde hesaplamak üzere tasarlanmıştır.
+Bu depo, **Gezgin Satıcı Problemi (TSP)** için **Benzetimli Tavlama (Simulated Annealing - SA)** algoritmasını kullanan Python tabanlı bir çözümleyici içerir. Standart SA uygulamalarının aksine, bu çözümleyici kullanıcının belirlediği süre sınırı ile tam senkronize çalışan **Zamana Bağlı Üstel Soğutma** kullanır.
 
-### Temel Çalışma Mantığı
-Sabit iterasyona dayalı soğutma kullanan standart SA uygulamalarının aksine, bu çözümleyici **Zamana Bağlı Üstel Soğutma (Time-Based Exponential Cooling)** programı kullanır. Sıcaklık, kullanıcının belirlediği süre sınırı ile tam senkronize olarak, ilk keşif aşamasından son sömürü aşamasına kadar pürüzsüz bir şekilde düşer. Komşuluk üretimi (yeni rota denemeleri), kesişen yolları verimli bir şekilde açmak için hızlı delta-maliyet **2-Opt** ters çevirme hamleleriyle gerçekleştirilir.
-
-### Özellikler
-*   **Dinamik Soğutma:** Sıcaklık, geçen çalışma süresine göre otomatik olarak ayarlanarak algoritmanın erken donmasını (yerel çukurlara saplanmasını) engeller.
-*   **Güçlü Veri İşleme:** `.csv` veya `.txt` koordinat dosyalarını başlıkları veya bozuk metin satırlarını yok sayarak otomatik olarak temizler ve işler.
-*   **Optimize Edilmiş Performans:** `numpy` ve `pandas` kullanarak hızlı Öklid mesafe matrisi hesaplamaları ve delta değerlendirmeleri sunar.
-
-### Kurulum
-Gerekli Python kütüphanelerinin yüklü olduğundan emin olun:
+### 🚀 Gereksinimler & Kurulum
+Sisteminizde Python'un yüklü olduğundan emin olun. Ardından projenin çalışması için gerekli kütüphaneleri yükleyin:
 ```bash
 pip install numpy pandas
 ```
 
-### Kullanım
-1. Şehir koordinatlarınızı ana dizindeki `coordinates.csv` adlı dosyaya yerleştirin. Dosya `ID`, `X` ve `Y` değerlerini içermelidir (virgül, boşluk veya sekme ile ayrılmış olabilir).
-2. Optimizasyon kodunu çalıştırın:
+### 📁 Veri Formatı
+Şehir koordinatlarınızı ana dizindeki `coordinates.csv` adlı dosyaya yerleştirin. Dosya `ID`, `X` ve `Y` değerlerini içermelidir (virgül, boşluk veya sekme ile ayrılmış olabilir). Program başlık satırlarını ve bozuk verileri otomatik olarak temizler.
+```text
+ID  X       Y
+1   510.27  319.67
+2   125.47  178.93
+3   8279.73 195.27
+```
+
+### ⚙️ Ayarlar
+Kodu çalıştırmadan önce `path.py` dosyasının en üstündeki parametreleri kendi hedeflerinize göre özelleştirebilirsiniz:
+```python
+DOSYA_ADI = 'coordinates.csv'
+ZAMAN_SINIRI = 100           # Saniye cinsinden maksimum çalışma süresi
+BASLANGIC_SICAKLIK = 50.0    # Keşif aşaması başlangıç sıcaklığı
+BITIS_SICAKLIK = 0.01        # Algoritmanın duracağı son saniye sıcaklığı
+```
+
+### ▶️ Kullanım
+Kodu başlatmak için terminalde aşağıdaki komutu çalıştırın. Program anlık sıcaklık düşüşlerini ve bulunan en kısa rotayı canlı olarak gösterecektir.
 ```bash
 python path.py
 ```
-3. Program terminalde anlık sıcaklık düşüşlerini, ara iyileştirmeleri ve bulunan en kısa rotanın son şehir sıralamasını canlı olarak çıktı verecektir.
